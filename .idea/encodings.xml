@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/cloud/api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/cloud/api-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/cloud/config-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/cloud/config-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/cloud/service-registry/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/cloud/service-registry/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/cloud/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/cloud/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/common-lib/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/common-lib/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/airline-core-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/airline-core-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/ancillary-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/ancillary-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/booking-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/booking-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/flight-ops-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/flight-ops-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/location-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/location-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/notification-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/notification-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/payment-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/payment-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/pricing-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/pricing-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/seat-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/seat-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/services/user-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Microservices/src/main/resources" charset="UTF-8" />
+    <file url="file://$APPLICATION_HOME_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$APPLICATION_HOME_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

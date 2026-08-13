@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+        SERVICES AGGREGATOR POM
+        ========================
+        Same pattern as cloud/pom.xml — groups all BUSINESS microservices together.
+
+        Your project has two categories of modules:
+          cloud/    → Infrastructure (Eureka, Config, Gateway) — things that support the system
+          services/ → Business logic (user, flight, booking)   — things that ARE the system
+
+        This aggregator lets you:
+          1. Build all services at once: cd services && mvn clean install
+          2. Add new services easily: just create a folder + add <module> here
+          3. Keep the root POM clean (it just lists "cloud" and "services", not every service)
+
+        Inheritance chain: root → services → user-service / flight-service / booking-service
+    -->
+    <parent>
+        <groupId>com.zosh</groupId>
+        <artifactId>airline-microservice</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>services</artifactId>
+    <packaging>pom</packaging>
+    <name>Business Services</name>
+    <description>Aggregator for all business microservices (user, flight, booking, etc.)</description>
+
+    <modules>
+
+        <module>user-service</module>
+        <module>location-service</module>
+        <module>airline-core-service</module>
+        <module>flight-ops-service</module>
+        <module>pricing-service</module>
+        <module>seat-service</module>
+        <module>ancillary-service</module>
+        <module>booking-service</module>
+        <module>payment-service</module>
+        <module>notification-service</module>
+    </modules>
+    <properties>
+        <spring-cloud.version>2025.1.2</spring-cloud.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zosh</groupId>
+            <artifactId>common-lib</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin.external.google</groupId>
+            <artifactId>android-json</artifactId>
+            <version>0.0.20131108.vaadin1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

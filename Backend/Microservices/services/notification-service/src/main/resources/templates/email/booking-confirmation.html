@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Booking Confirmed</title>
+</head>
+<body style="margin:0;padding:0;font-family:Arial,sans-serif;background:#f8fafc;">
+
+<!-- Outer wrapper -->
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#ffffff;max-width:620px;margin:auto;border:1px solid #e2e8f0;">
+    <!-- HEADER -->
+    <tr>
+        <td style="padding:20px;text-align:center;background:#0a2342;color:#ffffff;">
+            <h1 style="margin:0;font-size:20px;">✅ Booking Confirmed</h1>
+            <p style="margin:4px 0 0;font-size:14px;">Your trip is all set!</p>
+        </td>
+    </tr>
+
+    <!-- Booking Reference -->
+    <tr>
+        <td style="padding:20px;text-align:center;">
+            <h2 style="margin:0;font-size:16px;color:#0a2342;">Booking Reference</h2>
+            <p th:text="${booking.bookingReference}" style="margin:4px 0;font-size:14px;color:#475569;">BK123456</p>
+            <p th:text="${booking.bookingDate}" style="margin:4px 0;font-size:12px;color:#94a3b8;">29 Mar 2026, 22:41</p>
+        </td>
+    </tr>
+
+    <!-- Flight Details -->
+    <tr>
+        <td style="padding:32px 40px 20px;">
+            <h2 style="margin:0 0 20px;font-size:15px;font-weight:700;color:#0a2342;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid #e2e8f0;padding-bottom:10px;">✈ Flight Details</h2>
+            <table role="presentation" width="100%">
+                <tr>
+                    <!-- Departure -->
+                    <td width="38%" valign="top" style="text-align:left;">
+                        <p th:text="${booking.departureAirportCode}" style="margin:0;font-size:42px;font-weight:800;color:#0a2342;">DEL</p>
+                        <p th:text="${booking.departureCity}" style="margin:0;font-size:13px;color:#475569;">New Delhi</p>
+                        <p th:text="${depTime}" style="margin:0;font-size:22px;font-weight:700;color:#1a56db;">10:30</p>
+                        <p th:text="${booking.departureAirportName}" style="margin:0;font-size:12px;color:#64748b;">Indira Gandhi Intl</p>
+                        <p th:text="${booking.departureTerminal}" style="margin:0;font-size:11px;color:#94a3b8;">Terminal 2</p>
+                        <p th:text="${booking.departureGate}" style="margin:0;font-size:11px;color:#94a3b8;">Gate A</p>
+                    </td>
+
+                    <!-- Middle -->
+                    <td width="24%" valign="top" style="text-align:center;">
+                        <p th:text="${booking.flightNumber}" style="margin:0;font-size:14px;color:#475569;">AI-202</p>
+                        <p th:text="${booking.flightDuration}" style="margin:0;font-size:12px;color:#94a3b8;">2h 15m</p>
+                        <p style="margin:0;font-size:12px;color:#94a3b8;">NON-STOP</p>
+                        <p th:text="${cabinClassDisplay}" style="margin:0;font-size:12px;color:#94a3b8;">Economy</p>
+                        <div th:if="${booking.aircraftModel != null}" th:text="${booking.aircraftModel}" style="margin-top:4px;font-size:10px;color:#94a3b8;">Boeing 737</div>
+                    </td>
+
+                    <!-- Arrival -->
+                    <td width="38%" valign="top" style="text-align:right;">
+                        <p th:text="${booking.arrivalAirportCode}" style="margin:0;font-size:42px;font-weight:800;color:#0a2342;">CCU</p>
+                        <p th:text="${booking.arrivalCity}" style="margin:0;font-size:13px;color:#475569;">Kolkata</p>
+                        <p th:text="${arrTime}" style="margin:0;font-size:22px;font-weight:700;color:#1a56db;">12:45</p>
+                        <p th:text="${booking.arrivalAirportName}" style="margin:0;font-size:12px;color:#64748b;">Netaji Subhas Intl</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Passenger Details -->
+    <tr th:if="${booking.passengers != null and !booking.passengers.isEmpty()}">
+        <td style="padding:20px;">
+            <h2 style="margin:0 0 16px;font-size:15px;font-weight:700;color:#0a2342;border-bottom:2px solid #e2e8f0;padding-bottom:10px;">👥 Passenger Details</h2>
+            <table role="presentation" width="100%" style="border-collapse:collapse;">
+                <thead>
+                <tr style="background:#f8faff;">
+                    <th style="padding:10px;font-size:12px;color:#64748b;">#</th>
+                    <th style="padding:10px;font-size:12px;color:#64748b;">Name</th>
+                    <th style="padding:10px;font-size:12px;color:#64748b;">Type</th>
+                    <th style="padding:10px;font-size:12px;color:#64748b;">Ticket No.</th>
+                    <th style="padding:10px;font-size:12px;color:#64748b;">Passport</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pax, iStat : ${booking.passengers}" th:style="${iStat.odd} ? 'background:#ffffff;' : 'background:#f8faff;'">
+                    <td th:text="${iStat.count}" style="padding:10px;font-size:13px;color:#475569;">1</td>
+                    <td>
+                        <p th:text="${pax.getFullName()}" style="margin:0;font-size:14px;font-weight:600;color:#0a2342;">John Smith</p>
+                        <p th:text="${pax.nationality}" style="margin:2px 0 0;font-size:11px;color:#94a3b8;">Indian</p>
+                    </td>
+                    <td>
+                        <span th:if="${pax.adult}" style="background:#dbeafe;color:#1e40af;padding:3px 10px;border-radius:12px;">Adult</span>
+                        <span th:unless="${pax.adult}" style="background:#fef9c3;color:#854d0e;padding:3px 10px;border-radius:12px;">Child</span>
+                    </td>
+                    <td th:text="${pax.ticketNumber}" style="font-family:monospace;color:#475569;">TKT-20260329-AB267E80</td>
+                    <td th:text="${pax.passportNumber != null ? pax.passportNumber : '_'}" style="font-family:monospace;color:#475569;">_</td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Baggage Allowance -->
+    <tr th:if="${hasBaggage}">
+        <td style="padding:20px;">
+            <h2 style="margin:0 0 16px;font-size:15px;font-weight:700;color:#0a2342;border-bottom:2px solid #e2e8f0;padding-bottom:10px;">🧳 Baggage Allowance</h2>
+            <table role="presentation" width="100%">
+                <tr>
+                    <td width="50%">
+                        <p style="margin:0;font-size:12px;color:#64748b;">Cabin</p>
+                        <p th:text="${cabinBaggage}" style="margin:2px 0 0;font-size:14px;font-weight:700;">1 × 7 kg</p>
+                    </td>
+                    <td width="50%">
+                        <p style="margin:0;font-size:12px;color:#64748b;">Check-in</p>
+                        <p th:text="${checkinBaggage}" style="margin:2px 0 0;font-size:14px;font-weight:700;">1 × 20 kg</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Fare Benefits -->
+    <tr>
+        <td style="padding:20px;">
+            <h2 style="margin:0 0 16px;font-size:15px;font-weight:700;color:#0a2342;border-bottom:2px solid #e2e8f0;padding-bottom:10px;">⭐ Fare Benefits</h2>
+            <table role="presentation" width="100%">
+                <tr>
+                    <td width="50%" valign="top">
+                        <p style="margin:4px 0;font-size:13px;color:#475569;">
+                            <span th:if="${booking.priorityBoarding != null and booking.priorityBoarding}" style="color:#2ea043;margin-right:8px;">✓</span>
+                            <span th:unless="${booking.priorityBoarding != null and booking.priorityBoarding}" style="color:#94a3b8;margin-right:8px;">×</span>
+                            <span th:style="${booking.priorityBoarding != null and booking.priorityBoarding} ? '' : 'color:#94a3b8;text-decoration:line-through;'">Priority Boarding</span>
+                        </p>
+                        <p style="margin:4px 0;font-size:13px;color:#475569;">
+                            <span th:if="${booking.loungeAccess != null and booking.loungeAccess}" style="color:#2ea043;margin-right:8px;">✓</span>
+                            <span th:unless="${booking.loungeAccess != null and booking.loungeAccess}" style="color:#94a3b8;margin-right:8px;">×</span>
+                            <span th:style="${booking.loungeAccess != null and booking.loungeAccess} ? '' : 'color:#94a3b8;text-decoration:line-through;'">Lounge Access</span>
+                        </p>
+                        <p style="margin:4px 0;font-size:13px;color:#475569;">
+                            <span th:if="${booking.complimentaryMeals != null and booking.complimentaryMeals}" style="color:#2ea043;margin-right:8px;">✓</span>
+                            <span th:unless="${booking.complimentaryMeals != null and booking.complimentaryMeals}" style="color:#94a3b8;margin-right:8px;">×</span>
+                            <span th:style="${booking.complimentaryMeals != null and booking.complimentaryMeals} ? '' : 'color:#94a3b8;text-decoration:line-through;'">Complimentary Meals</span>
+                        </p>
+                    </td>
+                    <td width="50%" valign="top">
+                        <p style="margin:4px 0;font-size:13px;color:#475569;">
+                            <span th:if="${booking.freeDateChange != null and booking.freeDateChange}" style="color:#2ea043;margin-right:8px;">✓</span>
+                            <span th:unless="${booking.freeDateChange != null and booking.freeDateChange}" style="color:#94a3b8;margin-right:8px;">×</span>
+                            <span th:style="${booking.freeDateChange != null and booking.freeDateChange} ? '' : 'color:#94a3b8;text-decoration:line-through;'">Free Date Change</span>
+                        </p>
+                        <p style="margin:4px 0;font-size:13px;color:#475569;">
+                            <span th:if="${booking.partialRefund != null and booking.partialRefund}" style="color:#2ea043;margin-right:8px;">✓</span>
+                            <span th:unless="${booking.partialRefund != null and booking.partialRefund}" style="color:#94a3b8;margin-right:8px;">×</span>
+                            <span th:style="${booking.partialRefund != null and booking.partialRefund} ? '' : 'color:#94a3b8;text-decoration:line-through;'">Partial Refund</span>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Payment Summary -->
+    <tr>
+        <td style="padding:20px;">
+            <h2 style="margin:0 0 16px;font-size:15px;font-weight:700;color:#0a2342;border-bottom:2px solid #e2e8f0;padding-bottom:10px;">💳 Payment Summary</h2>
+            <table role="presentation" width="100%">
+                <tr>
+                    <td style="padding:4px 0;font-size:13px;color:#475569;">Base Fare (<span th:text="${passengerCount}">2</span> pax)</td>
+                    <td style="padding:4px 0;font-size:13px;color:#475569;text-align:right;">INR <span th:text="${baseFareTotal}">4200.00</span></td>
+                </tr>
+                <tr>
+                    <td style="padding:4px 0;font-size:13px;color:#475569;">Taxes &amp; Fees</td>
+                    <td style="padding:4px 0;font-size:13px;color:#475569;text-align:right;">INR <span th:text="${taxes}">900.00</span></td>
+                </tr>
+                <tr th:if="${booking.seatFees != null and booking.seatFees > 0}">
+                    <td style="padding:4px 0;font-size:13px;color:#475569;">Seat Selection</td>
+                    <td style="padding:4px 0;font-size:13px;color:#475569;text-align:right;">INR <span th:text="${seatFees}">0.00</span></td>
+                </tr>
+                <tr th:if="${booking.mealFees != null and booking.mealFees > 0}">
+                    <td style="padding:4px 0;font-size:13px;color:#475569;">Meals</td>
+                    <td style="padding:4px 0;font-size:13px;color:#475569;text-align:right;">INR <span th:text="${mealFees}">0.00</span></td>
+                </tr>
+                <tr th:if="${booking.ancillaryFees != null and booking.ancillaryFees > 0}">
+                    <td style="padding:4px 0;font-size:13px;color:#475569;">Add-ons</td>
+                    <td style="padding:4px 0;font-size:13px;color:#475569;text-align:right;">INR <span th:text="${ancillaryFees}">0.00</span></td>
+                </tr>
+                <!-- Separator Line -->
+                <tr>
+                    <td colspan="2" style="border-top:2px solid #0a2342;padding-top:10px;margin-top:10px;"></td>
+                </tr>
+                <!-- Total Paid -->
+                <tr>
+                    <td style="padding:4px 0;font-size:15px;font-weight:700;color:#0a2342;">Total Paid</td>
+                    <td style="padding:4px 0;font-size:15px;font-weight:700;color:#0a2342;text-align:right;">INR <span th:text="${totalAmount}">16838.00</span></td>
+                </tr>
+            </table>
+
+            <!-- Transaction Details -->
+            <table role="presentation" width="100%" style="margin-top:20px;">
+                <tr>
+                    <td style="padding:2px 0;font-size:11px;color:#64748b;">Transaction ID</td>
+                    <td style="padding:2px 0;font-size:11px;color:#475569;text-align:right;font-family:monospace;" th:text="${booking.transactionId}">TXN_123456789</td>
+                </tr>
+                <tr>
+                    <td style="padding:2px 0;font-size:11px;color:#64748b;">Payment Reference</td>
+                    <td style="padding:2px 0;font-size:11px;color:#475569;text-align:right;font-family:monospace;" th:text="${booking.providerPaymentId}">pay_123456789</td>
+                </tr>
+                <tr>
+                    <td style="padding:2px 0;font-size:11px;color:#64748b;">Paid via</td>
+                    <td style="padding:2px 0;font-size:11px;color:#475569;text-align:right;text-transform:uppercase;" th:text="${booking.paymentGateway}">RAZORPAY</td>
+                </tr>
+                <tr>
+                    <td style="padding:2px 0;font-size:11px;color:#64748b;">Payment Date</td>
+                    <td style="padding:2px 0;font-size:11px;color:#475569;text-align:right;" th:text="${paidAt}">29 Mar 2026, 22:42</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Footer Action -->
+    <tr>
+        <td style="padding:30px 20px;text-align:center;background:#f8fafc;">
+            <a href="#" style="display:inline-block;padding:12px 30px;background:#0a2342;color:#ffffff;text-decoration:none;font-weight:600;border-radius:6px;font-size:14px;">✓ Web Check-In</a>
+            <p style="margin:20px 0 0;font-size:12px;color:#94a3b8;">Need help? Contact our support at support@zoshairlines.com</p>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
